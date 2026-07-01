@@ -1,8 +1,7 @@
-      homepage: "https://github.com/Ghostblaster08/buttercup_target"                                                                                                                   
-    main_repo: "https://github.com/Ghostblaster08/buttercup_target.git"                                                                                                              
-    language: c++                                                                                                                                                                    
-    fuzzing_engines:                                                                                                                                                                 
-      - afl                                                                                                                                                                          
-    sanitizers:                                                                                                                                                                      
-      - address                                                                                                                                                                      
-                  
+homepage: "https://github.com/Ghostblaster08/buttercup_target"                                                                                                                   
+main_repo: "https://github.com/Ghostblaster08/buttercup_target.git"                                                                                                              
+language: c++                                                                                                                                                                    
+fuzzing_engines:                                                                                                                                                                 
+  - afl                                                                                                                                                                          
+sanitizers:                                                                                                                                                                      
+  - address                                                                                                                                                                      
