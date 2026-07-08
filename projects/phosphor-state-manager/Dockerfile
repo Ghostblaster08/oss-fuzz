@@ -1,4 +1,4 @@
-# Copyright 2021 Google LLC
+# Copyright 2026 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -15,16 +15,11 @@
 ################################################################################
 
 FROM gcr.io/oss-fuzz-base/base-builder
+RUN apt-get update && apt-get install -y make autoconf automake libtool nlohmann-json3-dev zip
 
-# Packages taken from:
-# * https://github.com/bitcoin/bitcoin/blob/master/doc/build-unix.md#dependency-build-instructions
-# * https://github.com/bitcoin/bitcoin/blob/master/depends/README.md#for-linux-including-i386-arm-cross-compilation
-RUN apt-get update && apt-get install -y \
-  build-essential curl g++-multilib make \
-  patch python3 zip
-
-RUN git clone --depth=1 https://github.com/bitcoin/bitcoin.git bitcoin-core
-RUN git clone --depth=1 https://github.com/bitcoin-core/qa-assets bitcoin-core/assets && \
-  rm -rf bitcoin-core/assets/.git  # Remove git history to save storage
-WORKDIR bitcoin-core
+RUN git clone --depth 1 https://github.com/openbmc/phosphor-state-manager.git phosphor-state-manager
+WORKDIR phosphor-state-manager
 COPY build.sh $SRC/
+COPY target_parser_fuzzer.cpp $SRC/
+COPY target_parser_fuzzer.dict $SRC/
+COPY mock_includes $SRC/mock_includes
