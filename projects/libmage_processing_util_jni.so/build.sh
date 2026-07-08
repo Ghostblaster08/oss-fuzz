@@ -4,6 +4,8 @@
     cd $SRC/buttercup_target/scripts
     export AFL_PATH=/src/aflplusplus
     export NDK=/src/android-ndk-r25c
+
+    sed -i 's|#include "afl-fuzz.h"|int __AFL_LOOP(int); void __AFL_INIT(void);|' ../harnesses/fuzz_image_processing.c
   
     ./build.sh afl
   
